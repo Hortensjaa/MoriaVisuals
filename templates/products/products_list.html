@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Moria Visuals{% endblock %}
+
+{% block content %}
+<h2>Our products:</h2>
+<ul>
+    {% for product in products %}
+    <li><a href={{product.url}}><p>{{ product.name }}</p></a>
+    <p>{{ product.price }} zł</p></li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Moria Visuals{% endblock %}
+
+{% block content %}
+<a href='\'><p>Back</p></a>
+<h1>{{ product.name }}</h1>
+<h2>{{ product.price }} zł</h2>
+<p>{{ product.description }}</p>
+<form action="{% url 'products:add_to_cart' product.id %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+        {% for size in sizes %}
+            {% if size.count >= 1 %}
+                <input type="radio" name="size" id="size{{ forloop.counter }}" value="{{ size.id }}">
+                <label for="size{{ forloop.counter }}">{{ size.size }}</label><br>
+            {% else %}
+                <input type="radio" name="size"  disabled>
+                <label for="size{{ forloop.counter }}">{{ size.size }} - not available</label><br>
+            {% endif %}
+        {% endfor %}
+    </fieldset>
+    <input type="submit" value="Add to cart">
+</form>
+
+{% endblock %}
