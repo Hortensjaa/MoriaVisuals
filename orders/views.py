@@ -1,16 +1,10 @@
-from urllib.parse import urlunparse
-from django.urls import reverse
-from django.core.exceptions import ObjectDoesNotExist
-from django.db.models import Value, Q, F, URLField, Case, When, IntegerField, Sum
-from django.db.models.functions import Concat
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render, redirect
+from django.db.models import F, Sum
+from django.shortcuts import render, redirect
 from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from products.views import make_url
-from products.models import Product, ProductStore
 from .models import *
 from .forms import CartItemEditForm
 
@@ -24,10 +18,10 @@ class CartView(APIView):
             customer = request.user
             if customer.cart:
                 cart = customer.cart.annotate(product_id=F('product__product__id'),
-                                              id = F('id'),
+                                              id=F('id'),
                                               size=F('product__size'),
                                               price=F('product__product__price'),
-                                              sum_item=F('price')*F('count'))
+                                              sum_item=F('price') * F('count'))
                 for product in cart:
                     product['url'] = make_url(product['product_id'])
                 summary = cart.aggregate(sum=Sum('sum_item'), number_of_items=Sum('count'))
@@ -51,4 +45,3 @@ def edit_cart_item(request, cart_item_id):
             form.save()
             return redirect('orders:cart')
     return render(request, 'orders/edit_cart_item.html', {'form': form, 'cart_item_id': cart_item_id})
-
