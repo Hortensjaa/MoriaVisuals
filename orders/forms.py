@@ -1,9 +1,9 @@
-from django import forms
-from .models import CartItem
+from django.forms import ModelForm
+
+from .models import *
 
 
-class CartItemEditForm(forms.ModelForm):
-
+class AddressForm(ModelForm):
     class Meta:
-        model = CartItem
-        fields = ('count', )
+        model = Address
+        fields = '__all__'

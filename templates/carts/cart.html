@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+{{ text }}
+<h2>Koszyk:</h2>
+<ul>
+    {% for item in cart %}
+    <li><a href={{item.url}}>{{ item.name }}</a>: {{ item.size }} x{{ item.count }}
+    <p>{{ item.sum_item }} zł</p>
+    <p><a href="{% url 'carts:edit_cart_item' item.id %}">edytuj</a>
+    <a href="{% url 'carts:delete_cart_item' item.id %}">usuń</a></p></li>
+    {% endfor %}
+</ul>
+<h3>Sum: {{ summary.sum }}zł ({{ summary.number_of_items }} rzeczy)</h3>
+<form action="{% url 'orders:enter_address' %}">
+    <input type="submit" value="Złóż zamówienie" />
+</form>
+{% endblock %}

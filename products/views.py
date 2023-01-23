@@ -9,7 +9,7 @@ from rest_framework.response import Response
 from django.urls import reverse
 
 from .models import *
-from orders.models import CartItem
+from carts.models import CartItem
 
 
 def make_url(product_id):
@@ -17,6 +17,7 @@ def make_url(product_id):
     return url.replace(' ', '%20')
 
 
+#TODO: dodanie filtrów po typie, cenie itd
 class HomePageView(APIView):
     renderer_classes = [TemplateHTMLRenderer]
     template_name = 'products/products_list.html'
@@ -42,11 +43,12 @@ def add_to_cart(request, product_id):
 
     if request.user.is_authenticated:
         customer = request.user
-        product_in_cart = CartItem.objects.select_related().filter(customer=customer, product=selected_size)
+        product_in_cart = CartItem.objects.select_related()\
+            .filter(customer=customer, product=selected_size)
         if product_in_cart:
             product_in_cart[0].count += 1
             product_in_cart[0].save()
         else:
             CartItem.objects.create(customer=customer, product=selected_size, count=1)
 
-    return HttpResponseRedirect(reverse('orders:cart'))
+    return HttpResponseRedirect(reverse('carts:cart'))

@@ -7,6 +7,7 @@ from customers.views import SignUpView
 
 urlpatterns = [
     path('', include('products.urls')),
+    path('cart/', include('carts.urls')),
     path('order/', include('orders.urls')),
     path('admin/', admin.site.urls),
     path("accounts/", include("django.contrib.auth.urls")),

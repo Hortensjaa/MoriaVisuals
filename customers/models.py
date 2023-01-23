@@ -1,7 +1,7 @@
 from django.db import models
 from django.db.models import F
 from django.contrib.auth.models import AbstractUser
-from orders.models import CartItem
+from carts.models import CartItem
 
 
 class Customer(AbstractUser):
