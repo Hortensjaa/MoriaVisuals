@@ -26,10 +26,9 @@ class CartView(APIView):
                 for product in cart:
                     product['url'] = make_url(product['product_id'])
                 summary = cart.aggregate(sum=Sum('sum_item'), number_of_items=Sum('count'))
-                return Response({'cart': cart, 'summary': summary})
-            #TODO: Niewyswietlanie pustego koszyka XD
-            return Response({'text': 'Jeszcze nie masz nic w swoim koszyku'})
-        return Response({'text': 'Zaloguj się, żeby dodać rzecz do koszyka'})
+                return Response({'cart': cart, 'summary': summary, 'is_empty': False})
+            return Response({'text': 'Jeszcze nie masz nic w swoim koszyku', 'is_empty': True})
+        return Response({'text': 'Zaloguj się, żeby dodać rzecz do koszyka', 'is_empty': True})
 
 
 def delete_cart_item(request, cart_item_id):

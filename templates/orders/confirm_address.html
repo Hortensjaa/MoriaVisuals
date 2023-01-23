@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3>Sprawdź, czy adres jest poprawny:</h3>
+    <ul>
+        <li> Miasto: {{ address.city }}
+        <li> Adres: {{ address.street }} {{ address.number1 }}
+        {% if address.number2 != None %}/ {{ address.number2 }} {% endif %}
+        <li> Kod pocztowy: {{ address.postcode }}
+    </ul>
+    <form action="{% url 'orders:order_confirmed' address.id %}">
+        <input type="submit" value="Adres poprawny - złóż zamówienie" />
+    </form>
+    <form action="{% url 'orders:enter_address' %}">
+        <input type="submit" value="Coś jest nie tak - wpisz adres jeszcze raz" />
+    </form>
+{% endblock %}

@@ -15,7 +15,7 @@ class OrderItemInLine(admin.TabularInline):
 
 class AddressAdmin(admin.ModelAdmin):
     inlines = [OrderInLine]
-    list_display = ('city', 'postcode_string', 'street', 'number1', 'number2')
+    list_display = ('city', 'postcode', 'street', 'number1', 'number2')
 
 
 class OrderAdmin(admin.ModelAdmin):

@@ -18,7 +18,7 @@ class CustomerAdmin(UserAdmin):
     list_display = ["email", "first_name", "last_name", "is_staff"]
     ordering = ("-is_staff", "last_name",)
     fieldsets = ((None, {"fields": ("username", "password")}),
-                 ("Personal info", {"fields": ("first_name", "last_name", "email")}),
+                 ("Personal info", {"fields": ("first_name", "last_name", "email", "address")}),
                  ("Important dates", {"fields": ("last_login", "date_joined", "last_purchase")}),
                  ("Permissions", {"fields": ("is_active", "is_staff", "is_superuser", "user_permissions",),
                                   "classes": ['collapse']}),)

@@ -1,18 +1,20 @@
 from django.db import models
 from django.contrib import admin
+from django.core.validators import RegexValidator
 
 
-class Address(models.Model): #TODO: w customer foreign key do address
+class Address(models.Model):
     city = models.CharField(max_length=20)
     street = models.CharField(max_length=20)
     number1 = models.PositiveIntegerField()
     number2 = models.PositiveIntegerField(blank=True, null=True)
-    postcode = models.PositiveIntegerField()
+    postcode = models.CharField(
+        max_length=6,
+        validators=[RegexValidator(regex='^\d{2}-\d{3}$', message='Podaj kod pocztowy w formacie "dd-ddd".')]
+    )
 
-    @admin.display(description='Postcode', )
-    def postcode_string(self):
-        pc = str(self.postcode)
-        return pc[0:2] + '-' + pc[2:5]
+    def __str__(self):
+        return self.city + ' ' + self.street
 
 
 class Order(models.Model):
