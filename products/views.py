@@ -1,6 +1,6 @@
 from urllib.parse import urlunparse
 
-from django.db.models import Value, Q, F, URLField, Case, When, IntegerField, Sum
+from django.db.models import Sum
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from rest_framework.renderers import TemplateHTMLRenderer
@@ -17,7 +17,7 @@ def make_url(product_id):
     return url.replace(' ', '%20')
 
 
-#TODO: dodanie filtrów po typie, cenie itd
+# TODO: dodanie filtrów po typie, cenie itd
 class HomePageView(APIView):
     renderer_classes = [TemplateHTMLRenderer]
     template_name = 'products/products_list.html'

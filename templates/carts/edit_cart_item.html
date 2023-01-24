@@ -4,6 +4,6 @@
 <form method="post" action="{% url 'carts:edit_cart_item' cart_item_id %}">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Zapisz">
+    <input type="submit" value="Save">
 </form>
 {% endblock %}

@@ -10,7 +10,7 @@ class Address(models.Model):
     number2 = models.PositiveIntegerField(blank=True, null=True)
     postcode = models.CharField(
         max_length=6,
-        validators=[RegexValidator(regex='^\d{2}-\d{3}$', message='Podaj kod pocztowy w formacie "dd-ddd".')]
+        validators=[RegexValidator(regex='^\d{2}-\d{3}$', message='Enter postcode in "dd-ddd" format.')]
     )
 
     def __str__(self):

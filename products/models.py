@@ -5,8 +5,8 @@ from .types_and_sizes import SIZES, TYPES
 
 
 class Product(models.Model):
-    name = models.CharField(max_length=50, default='Produkt')
-    description = models.TextField(max_length=250, default='Opis produktu')
+    name = models.CharField(max_length=50, default='Some product')
+    description = models.TextField(max_length=250, default='Long product description')
     price = models.PositiveIntegerField(default=200)
     photo = models.ImageField(blank=True)
     type = models.CharField(choices=TYPES, max_length=50, default=TYPES[0])
