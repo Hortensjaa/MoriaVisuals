@@ -1,21 +1,24 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h2>{{ text }}</h2>
-{%  if is_empty == False %}
-    <h2>Cart:</h2>
-    <ul>
-        {% for item in cart %}
-        <li><a href={{item.url}}>{{ item.name }}</a>: {{ item.size }} x{{ item.count }}
-        <p>{{ item.sum_item }} zł</p>
-        <p><a href="{% url 'carts:edit_cart_item' item.id %}">edit</a>
-        <a href="{% url 'carts:delete_cart_item' item.id %}">delete</a></p></li>
-        {% endfor %}
-    </ul>
-    <h3>Sum: {{ summary.sum }}zł ({{ summary.number_of_items }} items)</h3>
-    <form action="{% url 'orders:confirm_address' %}">
-        <input type="submit" value="Order" />
-    </form>
-    Or <a href="/">go back</a>, do get something more!
-{% endif %}
+    {%  if is_empty == True %}
+        <h2>{{ text }}</h2>
+        <p> <a href="{% url 'products:home_page'%}">Back to shop</a></p>
+    {% endif %}
+    {%  if is_empty == False %}
+        <h2>Cart:</h2>
+        <ul>
+            {% for item in cart %}
+            <li><a href={{item.url}}>{{ item.name }}</a>: {{ item.size }} x{{ item.count }}
+            <p>{{ item.sum_item }} zł</p>
+            <p><a href="{% url 'carts:edit_cart_item' item.id %}">edit</a>
+            <a href="{% url 'carts:delete_cart_item' item.id %}">delete</a></p></li>
+            {% endfor %}
+        </ul>
+        <h3>Sum: {{ summary.sum }}zl ({{ summary.number_of_items }} items)</h3>
+        <form action="{% url 'orders:confirm_address' %}">
+            <input type="submit" value="Order" />
+        </form>
+        Or <a href="{% url 'products:home_page'%}">go back</a> and get something more!
+    {% endif %}
 {% endblock %}

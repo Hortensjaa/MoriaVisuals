@@ -16,7 +16,7 @@ class EnterAddressView(CreateView):
     def form_valid(self, form):
         customer = self.request.user
         self.address = form.save()
-        if not Address.objects.filter(customer=customer):
+        if Address.objects.filter(customer=customer):
             Address.objects.get(customer=customer).delete()
         customer.address = self.address
         customer.save()
@@ -32,6 +32,7 @@ def confirm_address(request):
         return render(request, 'orders/confirm_address.html', {'address': customer.address})
 
 
+# TODO: sending confirmation emails
 def order_confirmed(request, address_id):
     customer = request.user
     address = Address.objects.get(id=address_id)

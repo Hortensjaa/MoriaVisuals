@@ -10,7 +10,7 @@ class Customer(AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
     last_purchase = models.DateTimeField(blank=True, null=True)
-    address = models.ForeignKey('orders.Address', on_delete=models.CASCADE, blank=True, null=True)
+    address = models.ForeignKey('orders.Address', on_delete=models.SET_NULL, blank=True, null=True)
 
     def __str__(self):
         if self.first_name:
