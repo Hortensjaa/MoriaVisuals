@@ -9,6 +9,7 @@ from carts.models import CartItem
 from .models import *
 
 
+# entering address to order
 class EnterAddressView(CreateView):
     form_class = AddressForm
     template_name = "orders/enter_address.html"
@@ -24,6 +25,8 @@ class EnterAddressView(CreateView):
         return super().form_valid(form)
 
 
+# if customer had placed an order before, his address is already saved in database;
+# then, it's only needed to be confirmed up-to-date
 def confirm_address(request):
     customer = request.user
     if customer.address is None or customer.address == '':
@@ -33,6 +36,7 @@ def confirm_address(request):
 
 
 # TODO: sending confirmation emails
+# view after successfully placing an order
 def order_confirmed(request, address_id):
     customer = request.user
     address = Address.objects.get(id=address_id)

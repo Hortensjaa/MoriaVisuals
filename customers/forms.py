@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import Customer
 
 
+# creating new customer
 class CustomerCreationForm(UserCreationForm):
 
     class Meta:
@@ -10,6 +11,7 @@ class CustomerCreationForm(UserCreationForm):
         fields = ("email",)
 
 
+# changing customer's email
 class CustomerChangeForm(UserChangeForm):
 
     class Meta:
