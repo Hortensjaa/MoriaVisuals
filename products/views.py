@@ -12,7 +12,7 @@ from .models import *
 from carts.models import CartItem
 
 
-# function making url on site FIXME: okay, this is not a good one
+# function making url on site FIXME: this is not a good one XD
 def make_url(product_id):
     url = urlunparse(('http', '127.0.0.1:8000', f'{product_id}/', '', '', ''))
     return url.replace(' ', '%20')
@@ -25,8 +25,8 @@ class HomePageView(APIView):
     template_name = 'products/products_list.html'
 
     def get(self, request):
-        products = Product.objects.values('name', 'price', 'id') \
-            .alias(count_all=Sum('available_sizes__count')).filter(count_all__gt=0)
+        products = Product.objects.values('name', 'price', 'id', 'photo') \
+            .alias(count_all=Sum('available_sizes__count')).filter(count_all__gt=0).order_by("name")
         for product in products:
             product['url'] = make_url(product['id'])
         return Response({'products': products})

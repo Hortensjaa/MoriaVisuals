@@ -1,28 +1,30 @@
 <html lang="pl">
 <head>
-  <meta charset="utf-8">
-  <title>{% block title %}Moria Visuals{% endblock %}</title>
+    <meta charset="utf-8">
+    <title>{% block title %}Moria Visuals{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
 </head>
 <body>
-  <div class="topnav">
-  <h3><a href="{% url 'products:home_page'%}">MORIA VISUALS</a></h3>
+<div class="topnav">
+    <h3><a href="{% url 'products:home_page'%}">MORIA VISUALS</a></h3>
     {% if user.is_authenticated %}
-      Hi {{ user.username }}! 
-        <a href="{% url 'logout' %}">Log Out</a>
+        Hi {{ user.username }}!  <a href="{% url 'logout' %}">Log Out</a>
     {% else %}
-      <p>You are not logged in
-      <a href="{% url 'login' %}">Log In</a> |
-      <a href="{% url 'signup' %}">Sign Up</a></p>
+          <p>You are not logged in
+          <a href="{% url 'login' %}">Log In</a> |
+          <a href="{% url 'signup' %}">Sign Up</a></p>
     {% endif %}
     {% if user.is_superuser %}
-        <a href="/admin">Admin panel</a>
+         <a href="/admin">Admin panel</a>
     {% endif %}
-      <a href="#contact">Contact</a>
-      <a href="{% url 'carts:cart' %}">Cart</a>
-  </div>
-  <main>
-    {% block content %}
-    {% endblock %}
-  </main>
+        <a href="#contact">Contact</a>
+        <a href="{% url 'carts:cart' %}">Cart</a>
+    </div>
+<main>
+{% block content %}
+{% endblock %}
+</main>
 </body>
 </html>
