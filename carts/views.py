@@ -4,7 +4,6 @@ from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from products.views import make_url
 from .models import *
 from .forms import CartItemEditForm
 
@@ -23,8 +22,6 @@ class CartView(APIView):
                                               size=F('product__size'),
                                               price=F('product__product__price'),
                                               sum_item=F('price') * F('count'))
-                for product in cart:
-                    product['url'] = make_url(product['product_id'])
                 summary = cart.aggregate(sum=Sum('sum_item'), number_of_items=Sum('count'))
                 return Response({'cart': cart, 'summary': summary, 'is_empty': False})
             return Response({'text': 'You have nothing in your cart (yet!)', 'is_empty': True})

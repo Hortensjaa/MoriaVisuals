@@ -17,7 +17,12 @@ class Customer(AbstractUser):
     def __str__(self):
         if self.first_name:
             return self.first_name
+        elif self.username:
+            return self.username
         return self.email
+
+    def name(self):
+        return str(self)
 
     @property  # every customer has his/hers cart
     def cart(self):

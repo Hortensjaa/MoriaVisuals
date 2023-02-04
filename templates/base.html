@@ -10,19 +10,37 @@
 </head>
 <body>
     <div class="topnav">
-        <h3><a href="{% url 'products:home_page'%}">MORIA VISUALS</a></h3>
-        {% if user.is_authenticated %}
-           Hi {{ user.username }}!  <a href="{% url 'logout' %}">Log Out</a>
-        {% else %}
-              <p>You are not logged in
-              <a href="{% url 'login' %}">Log In</a> |
-              <a href="{% url 'signup' %}">Sign Up</a></p>
-        {% endif %}
-        {% if user.is_superuser %}
-             <a href="/admin">Admin panel</a>
-        {% endif %}
+        <div class="topnav-l">
+            <h3><a href="{% url 'products:home_page'%}">MORIA VISUALS</a></h3>
             <a href="#contact">Contact</a>
-            <a href="{% url 'carts:cart' %}">Cart</a>
+            <a href="#about">About us</a>
+         </div>
+        <div class="topnav-c">
+            <a href="https://www.instagram.com/moria.visuals/">Insta</a>
+            <a href="https://www.grailed.com/moriavisuals">Grailed</a>
+        </div>
+        <div class="topnav-r">
+            {% if user.is_authenticated %}
+                <a href="{% url 'carts:cart' %}">Cart</a>
+                <div class="dropdown">
+                    <button class="dropbtn">
+                        {{ user.name }}
+                    </button>
+                    <div class="dropdown-content">
+                        {% if user.is_superuser %}
+                            <a href="/admin" style="color: #1b6d85">Admin panel</a>
+                        {% endif %}
+                        <a href="#profile">Profile</a>
+                        <a href="#orders">My orders</a>
+                        <a href="{% url 'logout' %}">Log Out</a>
+                    </div>
+                </div>
+            {% endif %}
+            {% if not user.is_authenticated %}
+                  <a href="{% url 'login' %}">Log In</a> |
+                  <a href="{% url 'signup' %}">Sign Up</a>
+            {% endif %}
+        </div>
     </div>
     <main>
         {% block content %}

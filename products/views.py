@@ -1,5 +1,6 @@
 from datetime import datetime
 from urllib.parse import urlunparse
+from pympler import summary, muppy
 
 from django.db.models import Sum
 from django.http import HttpResponseRedirect
@@ -14,10 +15,10 @@ from .filters import ProductFilter
 from carts.models import CartItem
 
 
-# function making url on site FIXME: this is not a good one XD
-def make_url(product_id):
-    url = urlunparse(('http', '127.0.0.1:8000', f'{product_id}/', '', '', ''))
-    return url.replace(' ', '%20')
+def memory_monitr():
+    all_objects = muppy.get_objects()
+    sum1 = summary.summarize(all_objects)
+    summary.print_(sum1)
 
 
 # home page view - all products with they name, photos and prices
@@ -57,5 +58,4 @@ def add_to_cart(request, product_id):
         # else, new CartItem object is created and linked to the user
         else:
             CartItem.objects.create(customer=customer, product=selected_size, count=1)
-
     return HttpResponseRedirect(reverse('carts:cart'))

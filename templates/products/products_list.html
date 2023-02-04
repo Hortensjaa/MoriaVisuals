@@ -6,8 +6,12 @@
 {% block title %}Moria Visuals{% endblock %}
 {% block content %}
     <form method="get">
-        <p>Type: {{ filter.form.type }}</p>
-        <p>Min price: {{ filter.form.price__lt }} | Max price: {{ filter.form.price__gt }}</p>
+        Type: {% for choice in filter.form.type %}
+            <label style="display: inline-block; margin-right: 10px;">
+                {{ choice.tag }} {{ choice.choice_label }}
+            </label>
+        {% endfor %}
+        <p>Min price: {{ filter.form.price__gte }} | Max price: {{ filter.form.price__lte }}</p>
         <p>Product name: {{ filter.form.name }}</p>
         <input type="submit" value="Filter"/>
     </form>
@@ -15,9 +19,9 @@
     <div class="product-container">
       {% for product in filter.qs %}
         <div class="product"><a href="{% url 'products:detail_view' product.id %}">
-            <p>{{ product.name }}</p>
-            <img src="{{ MEDIA_URL }}{{ product.photo }}" alt="Product Image">
-            <p>{{ product.price }}</p></a>
+            <h2>{{ product.name }}</h2>
+            <img src="{{ MEDIA_URL }}{{ product.photo }}" alt="Product Image"></a>
+            <h2>{{ product.price }}</h2>
         </div>
       {% endfor %}
     </div>
