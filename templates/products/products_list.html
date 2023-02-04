@@ -5,23 +5,26 @@
 {% endblock %}
 {% block title %}Moria Visuals{% endblock %}
 {% block content %}
-    <form method="get">
-        Type: {% for choice in filter.form.type %}
-            <label style="display: inline-block; margin-right: 10px;">
-                {{ choice.tag }} {{ choice.choice_label }}
-            </label>
-        {% endfor %}
-        <p>Min price: {{ filter.form.price__gte }} | Max price: {{ filter.form.price__lte }}</p>
-        <p>Product name: {{ filter.form.name }}</p>
-        <input type="submit" value="Filter"/>
-    </form>
-    <h2>Our products:</h2>
+    <div class="filter-content">
+        <form method="get" class="filters">
+            <div class="filter-group1">
+                <b>Type</b> {% for choice in filter.form.type %}
+                    <label style="display: inline-block; margin-right: 10px;">
+                        {{ choice.tag }} {{ choice.choice_label }}
+                    </label>
+                {% endfor %}
+            </div>
+            <div class="filter-group2"><b>Price</b> {{ filter.form.price__gte }} | {{ filter.form.price__lte }}</div>
+            <div class="filter-group3"><b>Product name</b> {{ filter.form.name }}</div>
+            <div class="filter-group4"><input class="filter-button" type="submit" value="FILTER"/></div>
+        </form>
+    </div>
+    <br>
     <div class="product-container">
       {% for product in filter.qs %}
         <div class="product"><a href="{% url 'products:detail_view' product.id %}">
-            <h2>{{ product.name }}</h2>
-            <img src="{{ MEDIA_URL }}{{ product.photo }}" alt="Product Image"></a>
-            <h2>{{ product.price }}</h2>
+            <img src="{{ MEDIA_URL }}{{ product.photo }}" alt="Product Image">
+            <p><b>{{ product.name }}</b> {{ product.price }} zł</p></a>
         </div>
       {% endfor %}
     </div>

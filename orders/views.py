@@ -50,10 +50,10 @@ def send_confirmation_email(order, customer):
     msg.set_content(
         f"Hi {customer}!\n"
         f"Thank you for placing order no {order.id} with: \n{''.join(products_list)}"
-        f"Estimated delivery time is {(order.order_date + timedelta(days=3)).date()}."
+        f"Estimated delivery time is {(order.order_date + timedelta(days=3)).date()}. "
         f"If you have any questions, contact us by this email address."
     )
-    msg["Subject"] = "Your Moria order confirmation"
+    msg["Subject"] = f"Your Moria order {order.id}"
     msg["From"] = "Moria Visuals"
     msg["To"] = customer.email
 

@@ -5,6 +5,7 @@ from .types_and_sizes import SIZES, TYPES
 
 
 # model corresponding to product with its name, price etc.; doesn't contain size
+# TODO: many photos of one product
 class Product(models.Model):
     name = models.CharField(max_length=50, default='Some product')
     description = models.TextField(max_length=250, default='Long product description')
