@@ -1,3 +1,4 @@
+from datetime import datetime
 from urllib.parse import urlunparse
 
 from django.db.models import Sum
@@ -9,6 +10,7 @@ from rest_framework.response import Response
 from django.urls import reverse
 
 from .models import *
+from .filters import ProductFilter
 from carts.models import CartItem
 
 
@@ -18,18 +20,15 @@ def make_url(product_id):
     return url.replace(' ', '%20')
 
 
-# TODO: dodanie filtrów po typie, cenie itd
-# home page view - all products with its' names, photos and prices
+# home page view - all products with they name, photos and prices
 class HomePageView(APIView):
     renderer_classes = [TemplateHTMLRenderer]
     template_name = 'products/products_list.html'
 
     def get(self, request):
-        products = Product.objects.values('name', 'price', 'id', 'photo') \
-            .alias(count_all=Sum('available_sizes__count')).filter(count_all__gt=0).order_by("name")
-        for product in products:
-            product['url'] = make_url(product['id'])
-        return Response({'products': products})
+        products = Product.objects.alias(count_all=Sum('available_sizes__count')).filter(count_all__gt=0)
+        filter = ProductFilter(request.GET, queryset=products)
+        return Response({'filter': filter})
 
 
 # detail view on single product (available sizes, description etc.)

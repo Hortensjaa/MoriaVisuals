@@ -1,13 +1,24 @@
 {% extends "base.html" %}
+{% load static %}
+{% block links %}
+    <link rel="stylesheet" type="text/css" href="/static/css/products_list.css?{% now "U" %}">
+{% endblock %}
 {% block title %}Moria Visuals{% endblock %}
-
 {% block content %}
-<h2>Our products:</h2>
-<ul>
-    {% for product in products %}
-    <li><a href={{product.url}}><p>{{ product.name }}</p></a>
-        <img src="{{ MEDIA_URL }}{{ product.photo}}" alt="">
-        <p>{{ product.price }} zł</p></li>
-    {% endfor %}
-</ul>
+    <form method="get">
+        <p>Type: {{ filter.form.type }}</p>
+        <p>Min price: {{ filter.form.price__lt }} | Max price: {{ filter.form.price__gt }}</p>
+        <p>Product name: {{ filter.form.name }}</p>
+        <input type="submit" value="Filter"/>
+    </form>
+    <h2>Our products:</h2>
+    <div class="product-container">
+      {% for product in filter.qs %}
+        <div class="product"><a href="{% url 'products:detail_view' product.id %}">
+            <p>{{ product.name }}</p>
+            <img src="{{ MEDIA_URL }}{{ product.photo }}" alt="Product Image">
+            <p>{{ product.price }}</p></a>
+        </div>
+      {% endfor %}
+    </div>
 {% endblock %}

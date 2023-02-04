@@ -1,10 +1,9 @@
 {% extends "base.html" %}
 
-{% block title %}Moria Visuals{% endblock %}
-
 {% block content %}
-<a href='\'><p>Back</p></a>
+<a href="{% url 'products:home_page'%}"><p>Back</p></a>
 <h1>{{ product.name }}</h1>
+<img src="{{ MEDIA_URL }}{{ product.photo}}" alt="">
 <h2>{{ product.price }} zł</h2>
 <p>{{ product.description }}</p>
 <form action="{% url 'products:add_to_cart' product.id %}" method="post">
