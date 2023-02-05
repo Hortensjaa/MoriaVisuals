@@ -62,12 +62,12 @@
 
 /* Products */
 
-.product-container {
+.products-container {
     display: flex;
     flex-wrap: wrap;
-    width: 100%;
     min-height: 550px;
     align-items: center;
+    margin: 0 150px;
 }
 
 .product {

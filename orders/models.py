@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.core.validators import RegexValidator
 
 
+# TODO: add phone number... somewhere XD
 # address stored in database; address is associated with user
 class Address(models.Model):
     city = models.CharField(max_length=20)

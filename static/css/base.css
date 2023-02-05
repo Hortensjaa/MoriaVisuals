@@ -1,15 +1,16 @@
 body{
     background-color: #1b6d85;
-    width: 100%;
     margin: 0;
     padding: 0;
+    width: 100%;
+    overflow-y: scroll;
 }
 h1,h2,h3,h4{
-    color: #f2f2f2;
+    color: #000000;
 }
 
 a{
-    color: #f2f2f2;
+    color: rgba(0, 0, 0, 0.8);
     text-decoration: none;
 }
 
@@ -52,7 +53,7 @@ a{
 }
 
 .topnav a:hover {
-    border-bottom: 3px solid red;
+    border-bottom: 3px solid #93c54b;
 }
 
 /* Dropdown container - needed to position the dropdown content */
@@ -98,11 +99,24 @@ a{
  /*Add a dark background on topnav links and the dropdown button on hover */
 .dropdown:hover .dropbtn {
     /*background-color: #2f2f2f;*/
-    color: red;
+    color: #93c54b;
 }
 
 
 /* Show the dropdown menu when the user moves the mouse over the dropdown button */
 .dropdown:hover .dropdown-content {
   display: block;
+}
+
+/*Scrollbar*/
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #888;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
 }

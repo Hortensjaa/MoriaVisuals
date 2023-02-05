@@ -1,0 +1,58 @@
+.big-container{
+    display: flex;
+    height: 500px;
+    margin: 50px 150px;
+}
+
+.item-container, .photo-container{
+    width: calc(50% - 20px);
+    margin: 10px 0;
+    align-self: flex-start;
+}
+
+img{
+    max-width: calc(100vw - 150px);
+    max-height: calc(100vh - 150px);
+    border: #113e4b 3px groove;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+select {
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: white;
+    width: 200px;
+    cursor: pointer;
+}
+
+option {
+    font-size: 16px;
+    padding: 10px;
+}
+
+option[disabled] {
+    background-color: lightgray;
+    color: gray;
+}
+
+.submit-btn{
+    margin: 10px 0;
+}
+
+.submit-btn input[type="submit"] {
+    background-color: #23282e;
+    border: none;
+    width: 200px;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.submit-btn input[type="submit"]:hover{
+    background-color: #0e1113;
+}

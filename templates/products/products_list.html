@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
 {% block links %}
-    <link rel="stylesheet" type="text/css" href="/static/css/products_list.css?{% now "U" %}">
+    <link rel="stylesheet" type="text/css" href="/static/css/products/products_list.css?{% now "U" %}">
 {% endblock %}
-{% block title %}Moria Visuals{% endblock %}
 {% block content %}
     <div class="filter-content">
         <form method="get" class="filters">
@@ -20,7 +19,7 @@
         </form>
     </div>
     <br>
-    <div class="product-container">
+    <div class="products-container">
       {% for product in filter.qs %}
         <div class="product"><a href="{% url 'products:detail_view' product.id %}">
             <img src="{{ MEDIA_URL }}{{ product.photo }}" alt="Product Image">
