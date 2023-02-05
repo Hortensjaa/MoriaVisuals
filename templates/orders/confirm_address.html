@@ -3,10 +3,11 @@
 {% block content %}
 <h3>Check, whether your address is correct:</h3>
     <ul>
-        <li> City: {{ address.city }}
+        <li> City: {{ address.city }}</li>
         <li> Address: {{ address.street }} {{ address.number1 }}
-        {% if address.number2 != None %}/ {{ address.number2 }} {% endif %}
-        <li> Postcode: {{ address.postcode }}
+        {% if address.number2 != None %}/ {{ address.number2 }} {% endif %}</li>
+        <li> Postcode: {{ address.postcode }}</li>
+        <li>Contact number: {{ address.formatted_phone }}</li>
     </ul>
     <form action="{% url 'orders:process_payment' address.id %}">
         <input type="submit" value="Everything is alright - I want to pay now" />

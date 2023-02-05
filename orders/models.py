@@ -1,9 +1,12 @@
+from phonenumber_field.modelfields import PhoneNumberField
+from phonenumbers import phonenumberutil
+
 from django.db import models
 from django.contrib import admin
 from django.core.validators import RegexValidator
+from phonenumbers.phonenumberutil import format_number
 
 
-# TODO: add phone number... somewhere XD
 # address stored in database; address is associated with user
 class Address(models.Model):
     city = models.CharField(max_length=20)
@@ -15,9 +18,13 @@ class Address(models.Model):
         max_length=6,
         validators=[RegexValidator(regex='^\d{2}-\d{3}$', message='Enter postcode in "dd-ddd" format.')]
     )
+    phone_number = PhoneNumberField(null=False, blank=False)
 
     def __str__(self):
         return self.city + ' ' + self.street
+
+    def formatted_phone(self):
+        return format_number(self.phone_number, phonenumberutil.PhoneNumberFormat.INTERNATIONAL)
 
 
 # order model; order is associated to customer and address

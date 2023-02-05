@@ -59,6 +59,7 @@ def make_order(request, address_id):
 
 
 # PAYMENT
+# served with PayPal
 def process_payment(request, address_id):
     order = make_order(request, address_id)
 
