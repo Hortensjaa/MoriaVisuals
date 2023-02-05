@@ -4,7 +4,7 @@ from .models import *
 
 class OrderInLine(admin.TabularInline):
     model = Order
-    readonly_fields = ('customer', 'order_date', 'order_value')
+    readonly_fields = ('customer', 'order_date', 'order_total_value')
     extra = 0
 
 
@@ -22,12 +22,13 @@ class OrderAdmin(admin.ModelAdmin):
     fieldsets = [
         ('Customer', {'fields': ['customer']}),
         ('Address', {'fields': ['address']}),
+        ('Payment status', {'fields': ['payed']}),
     ]
-    readonly_fields = ('order_date', 'order_value')
+    readonly_fields = ('order_date', 'order_total_value')
     inlines = [OrderItemInLine]
-    list_display = ('customer', 'order_date', 'order_value')
+    list_display = ('customer', 'order_date', 'order_total_value', 'payed')
     list_display_links = ('customer', )
-    list_filter = ['order_date']
+    list_filter = ['order_date', 'payed']
     search_fields = ['customer']
 
 

@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'paypal.standard.ipn',
     'customers',
     'products',
     'carts',
@@ -131,3 +132,8 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = config("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# Payments
+
+PAYPAL_RECEIVER_EMAIL = config("PAYPAL_RECEIVER_EMAIL")
+PAYPAL_TEST = True

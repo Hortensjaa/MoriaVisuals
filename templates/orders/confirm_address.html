@@ -8,8 +8,8 @@
         {% if address.number2 != None %}/ {{ address.number2 }} {% endif %}
         <li> Postcode: {{ address.postcode }}
     </ul>
-    <form action="{% url 'orders:order_confirmed' address.id %}">
-        <input type="submit" value="Everything is alright - place an order!" />
+    <form action="{% url 'orders:process_payment' address.id %}">
+        <input type="submit" value="Everything is alright - I want to pay now" />
     </form>
     <form action="{% url 'orders:enter_address' %}">
         <input type="submit" value="Something is out-of-date - change an address" />

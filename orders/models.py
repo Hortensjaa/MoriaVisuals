@@ -24,9 +24,10 @@ class Order(models.Model):
     customer = models.ForeignKey('customers.Customer', on_delete=models.CASCADE, null=True)
     address = models.ForeignKey(Address, on_delete=models.CASCADE)
     order_date = models.DateTimeField(auto_now_add=True)
+    payed = models.BooleanField(default=False)
 
     @admin.display(description='Value', )
-    def order_value(self):  # total value of order
+    def order_total_value(self):  # total value of order
         items = self.order_items.values_list('count', 'product__product__price')
         if len(items) > 0:
             sum = 0
@@ -42,6 +43,6 @@ class OrderItem(models.Model):
     product = models.ForeignKey('products.ProductStore', on_delete=models.CASCADE)
     count = models.PositiveIntegerField(default=1)
 
-    def value(self):
+    def total_value(self):
         sum = self.count * self.product.product.price
         return sum
