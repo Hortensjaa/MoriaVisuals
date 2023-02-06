@@ -1,26 +1,23 @@
 import django_filters
 from django import forms
 
-from .models import Product
-from .types_and_sizes import TYPES
+from .models import Customer
+from orders.models import Order
 
 
 # filter on home page with all products
-class ProductFilter(django_filters.FilterSet):
-    # minimum price
+class OrdersFilter(django_filters.FilterSet):
+    # minimum value
     price__gte = django_filters.NumberFilter(
         field_name='price', lookup_expr='gte',
         widget=forms.NumberInput(attrs={'placeholder': 'min', 'min': 0, 'max': 1000, 'step': 50})
     )
-    # maximum price
+    # maximum value
     price__lte = django_filters.NumberFilter(
         field_name='price', lookup_expr='lte',
         widget=forms.NumberInput(attrs={'placeholder': 'max', 'min': 0, 'max': 1000, 'step': 50}))
-    name = django_filters.CharFilter(lookup_expr='icontains')
-    type = django_filters.MultipleChoiceFilter(field_name='type', choices=TYPES, widget=forms.CheckboxSelectMultiple())
-    order_by = django_filters.OrderingFilter(fields=('name', 'price'))
 
     class Meta:
-        model = Product
+        model = Order
         fields = []
         form = forms.Form

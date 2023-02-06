@@ -2,7 +2,6 @@ from datetime import datetime, timedelta
 import smtplib
 import ssl
 
-from _decimal import Decimal
 from paypal.standard.forms import PayPalPaymentsForm
 from email.message import EmailMessage
 
