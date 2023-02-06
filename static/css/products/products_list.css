@@ -1,3 +1,9 @@
+/* No margin because of filters bar */
+
+main{
+    margin: 0 0;
+}
+
 /* Filters */
 
 .filter-content {
@@ -67,7 +73,8 @@
     flex-wrap: wrap;
     min-height: 550px;
     align-items: center;
-    margin: 0 150px;
+    width: 80%;
+    margin: 30px auto;
 }
 
 .product {

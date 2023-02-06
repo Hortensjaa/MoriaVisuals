@@ -38,10 +38,10 @@ class Order(models.Model):
     def order_total_value(self):  # total value of order
         items = self.order_items.values_list('count', 'product__product__price')
         if len(items) > 0:
-            sum = 0
+            sum_val = 0
             for item in items:
-                sum += item[0] * item[1]
-            return sum
+                sum_val += item[0] * item[1]
+            return sum_val
         return None
 
 
