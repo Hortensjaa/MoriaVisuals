@@ -21,6 +21,10 @@ a{
     text-decoration: none;
 }
 
+input[type='submit'] {
+    padding: 10px 10px;
+    margin: 10px 10px;
+}
 
 .topnav {
     background-color: #000000;

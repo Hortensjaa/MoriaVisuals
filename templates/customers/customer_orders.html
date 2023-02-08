@@ -1,0 +1,27 @@
+<script>
+function myFunction(id) {
+    var x = document.getElementById(id);
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+</script>
+
+{% extends "base.html" %}
+{% block content %}
+    <div style="width: 400px">
+        <h1>My orders</h1>
+        {% for order in orders %}
+            <button onclick="myFunction('myDIV{{ forloop.counter }}')" style="padding: 5px 10px; width: 300px; margin-top: 15px">
+                {{ order.order_date }} | Total value: {{ order.order_total_value }}
+            </button>
+            <div id="myDIV{{ forloop.counter }}" style="display: none">
+                {% for item in order.order_items.all|dictsort:"product.product.name" %}
+                    <p>{{ item.product}} x{{ item.count }} | {{ item.total_value }} zł</p>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

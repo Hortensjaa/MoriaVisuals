@@ -17,8 +17,8 @@
         </ul>
         <h3>Sum: {{ summary.sum }}zl ({{ summary.number_of_items }} items)</h3>
         <form action="{% url 'orders:confirm_address' %}">
-            <input type="submit" value="Order" />
+            <input type="submit" style="width: 200px; margin-left: 0" value="Order"/>
         </form>
-        Or <a href="{% url 'products:home_page'%}">go back</a> and get something more!
+        Or <a href="{% url 'products:home_page'%}"><b>go back</b></a> and get something more!
     {% endif %}
 {% endblock %}

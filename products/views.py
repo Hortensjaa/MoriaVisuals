@@ -27,8 +27,7 @@ class HomePageView(APIView):
     template_name = 'products/products_list.html'
 
     def get(self, request):
-        products = Product.objects.alias(count_all=Sum('available_sizes__count')).filter(count_all__gt=0)
-        filter = ProductFilter(request.GET, queryset=products)
+        filter = ProductFilter(request.GET, queryset=Product.objects.all())
         return Response({'filter': filter})
 
 

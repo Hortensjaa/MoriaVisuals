@@ -9,6 +9,7 @@ urlpatterns = [
                 path('', include('products.urls')),
                 path('cart/', include('carts.urls')),
                 path('order/', include('orders.urls')),
+                path('customer/', include('customers.urls')),
                 path('admin/', admin.site.urls),
                 path("accounts/", include("django.contrib.auth.urls")),
                 path("signup/", SignUpView.as_view(), name="signup"),

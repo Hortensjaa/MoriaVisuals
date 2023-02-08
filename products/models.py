@@ -8,7 +8,8 @@ from .types_and_sizes import SIZES, TYPES
 # TODO: many photos of one product
 class Product(models.Model):
     name = models.CharField(max_length=50, default='Some product')
-    description = models.TextField(max_length=5000, default='Long product description')
+    description = models.TextField(max_length=5000,
+                                   default='Size chart (width/lenght):\n\nS - 50/60cm\n\nM - 55/71cm\n\nL - 60/77cm')
     price = models.PositiveIntegerField(default=200)
     photo = models.ImageField(blank=True, upload_to='photos')
     type = models.CharField(choices=TYPES, max_length=50, default=TYPES[0])  # t-shirts, accessories etc.

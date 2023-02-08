@@ -31,7 +31,7 @@
                             <a href="/admin" style="color: #1b6d85">Admin panel</a>
                         {% endif %}
                         <a href="#profile">Profile</a>
-                        <a href="#orders">My orders</a>
+                        <a href="{% url 'customer:customer_orders' %}">My orders</a>
                         <a href="{% url 'logout' %}">Log Out</a>
                     </div>
                 </div>

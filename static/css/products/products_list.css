@@ -68,9 +68,12 @@ main{
     border: #155062 1px solid;
     border-radius: 3px;
     display: block;
-    margin-left: 200px;
-    height: 24px;
+    margin-left: 150px!important;
+    margin-top: 0!important;
+    padding: 0 0!important;
+    height: 25px;
     width: 120px;
+    text-align: center;
 }
 
 

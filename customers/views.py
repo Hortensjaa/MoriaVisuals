@@ -1,7 +1,8 @@
+from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
 from django.views.generic.edit import CreateView
 
-from orders.models import Address
+from orders.models import Address, Order
 from .forms import CustomerCreationForm
 
 
@@ -22,4 +23,6 @@ def customer_profile(request):
 # all customer's orders with filters
 def customer_orders(request):
     customer = request.user
+    orders = Order.objects.filter(customer=customer).order_by('order_date')
+    return render(request, 'customers/customer_orders.html', {'orders': orders})
 
