@@ -11,7 +11,7 @@ class Customer(AbstractUser):
     USERNAME_FIELD = 'email'  # email is treated as required username field
     REQUIRED_FIELDS = ['username']
     last_purchase = models.DateTimeField(blank=True, null=True)
-    # customer can have address already saved in database
+    # customer can has address already saved in a database
     address = models.ForeignKey('orders.Address', on_delete=models.SET_NULL, blank=True, null=True)
 
     def __str__(self):
