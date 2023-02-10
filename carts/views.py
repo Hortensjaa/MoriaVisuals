@@ -1,11 +1,11 @@
 from django.db.models import F, Sum
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect, render
 from rest_framework.renderers import TemplateHTMLRenderer
-from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
-from .models import *
 from .forms import CartItemEditForm
+from .models import *
 
 
 # cart view; adding products to cart are only possible for authenticated users

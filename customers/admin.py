@@ -2,7 +2,8 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
 from carts.models import CartItem
-from .forms import CustomerCreationForm, CustomerChangeForm
+
+from .forms import CustomerChangeForm, CustomerCreationForm
 from .models import *
 
 

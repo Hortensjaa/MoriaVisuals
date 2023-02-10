@@ -1,18 +1,19 @@
 from datetime import datetime
 from urllib.parse import urlunparse
-from pympler import summary, muppy
 
 from django.db.models import Sum
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
-from rest_framework.renderers import TemplateHTMLRenderer
-from rest_framework.views import APIView
-from rest_framework.response import Response
 from django.urls import reverse
+from pympler import muppy, summary
+from rest_framework.renderers import TemplateHTMLRenderer
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
-from .models import *
-from .filters import ProductFilter
 from carts.models import CartItem
+
+from .filters import ProductFilter
+from .models import *
 
 
 def memory_monitr():

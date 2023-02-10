@@ -1,9 +1,8 @@
-from phonenumber_field.modelfields import PhoneNumberField
-from phonenumbers import phonenumberutil
-
-from django.db import models
 from django.contrib import admin
 from django.core.validators import RegexValidator
+from django.db import models
+from phonenumber_field.modelfields import PhoneNumberField
+from phonenumbers import phonenumberutil
 from phonenumbers.phonenumberutil import format_number
 
 

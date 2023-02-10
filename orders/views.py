@@ -1,20 +1,20 @@
-from datetime import datetime, timedelta
 import smtplib
 import ssl
-
-from paypal.standard.forms import PayPalPaymentsForm
+from datetime import datetime, timedelta
 from email.message import EmailMessage
 
-from django.views.generic import FormView, TemplateView
 from django.conf import settings
-from django.shortcuts import render, redirect, get_object_or_404
-from django.urls import reverse_lazy, reverse
+from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse, reverse_lazy
+from django.views.generic import FormView, TemplateView
 from django.views.generic.edit import CreateView
+from paypal.standard.forms import PayPalPaymentsForm
+
+from carts.models import CartItem
+from MoriaVisuals.settings import PAYPAL_RECEIVER_EMAIL
 
 from .forms import AddressForm
-from carts.models import CartItem
 from .models import *
-from MoriaVisuals.settings import PAYPAL_RECEIVER_EMAIL
 
 
 # DELIVERY ADDRESS
